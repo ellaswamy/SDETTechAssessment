@@ -15,7 +15,14 @@ Pre-Requisites
   b. export M2=$M2_HOME/bin
   c. export PATH=$M2:$PATH
   
-  Windows machine: 
+  Windows machine:
+  a. Go to system properties (Right click on "This PC" -->properties)
+  b. Go to Advanced System Settings
+  c. Click on Environment Variables
+  d. Add environment variable "M2_HOME =<path to apache maven> (e.g. c://users/<username>/downloads/apache-maven-3.6.1-bin\apache-maven-3.6.1)
+  e. Go to Path in the environment variables and click on Edit
+  f. Click on "New"
+  g. Enter bin path of maven. (e.g.c://users/<username>/downloads/apache-maven-3.6.1-bin\apache-maven-3.6.1\bin)
   
 5. Verify if maven is present on your machine. Run below command to verify.
   mvn --version
