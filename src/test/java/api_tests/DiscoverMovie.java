@@ -16,7 +16,6 @@ import apiHelpers.APIBaseTest;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import libraries.ConfigSettings;
 import libraries.TestDataHelper;
 
 public class DiscoverMovie extends APIBaseTest{
@@ -24,10 +23,9 @@ public class DiscoverMovie extends APIBaseTest{
 	private static Logger logger=LogManager.getLogger(DiscoverMovie.class.getName());
 	
 	
-	//Test Case 1: Validate the GET call for Discover/Movie Discover end point that returns 200 response code & non empty response (when data exists in the database)
-		//for successful Get request
-		//Test to validate the Movie Discover end point returns the JSON content only
-		//Assuming atleast 1 record exists in the database, if no data exists, create test data and have to call the Get
+	//1.	Positive Test: Validate the response status code returned by Discover Movie end point for successful GET request (200 should be returned)
+	//2.	Positive Test: Validate the response data returned by Discover Movie end point for successful GET request 
+	//3.	Positive Test: Verify that the content type of the response returned by the Discover Movie end point should be JSON only.
 		@Test
 		public void discoverAllMovies()
 		{
@@ -57,7 +55,7 @@ public class DiscoverMovie extends APIBaseTest{
 			}
 		}
 		
-		//Test Case 2: Negative Test Case: Validate the GET call for Discover/Movie Discover end point by passing incorrect end point url
+		//Test Case 4: Negative Test Case: Validate the error response status code returned by Discover Movie end point by providing incorrect URL for GET request 
 		@Test
 		public void getDiscoverMovie()
 		{
@@ -81,7 +79,7 @@ public class DiscoverMovie extends APIBaseTest{
 			}
 		}
 		
-		//Test Case 3: Negative Test Case: Validate the GET call for Discover/Movie Discover end point with no authorization key
+		//Test Case 5: Negative Test Case: Validate the error status code returned by Discover Movie end point without authorization key 
 		@Test
 		public void getDiscoverMovie_WithNoAuthorization()
 		{
@@ -104,11 +102,11 @@ public class DiscoverMovie extends APIBaseTest{
 			}
 		}
 	
-	/*Test Case 4: Validate the GET functionality of /discover/movie end point by applying filters on release year and vote count
+	/*Test Case 6: Validate the GET functionality of /discover/movie end point by applying filters on release year and vote count
 	 *can be extended for multiple parameters
 	 * Read the data from data provider and repeat the test for multiple data sets
 	 * 
-	 * Test Case 5: Negative Test Case: Validate the GET call for Discover/Movie end point for the movie details by passing invalid parameter values as filters e.g.voteCount, 
+	 * Test Case 7: Negative Test Case: Validate the GET call for Discover/Movie end point for the movie details by passing invalid parameter values as filters e.g.voteCount, 
 	 *empty body response, null values as parameters
 	 */
 	@Test (dataProvider="Movie_Discover")
@@ -155,7 +153,7 @@ public class DiscoverMovie extends APIBaseTest{
 		}
 	}
 	
-	//Test Case 6: Test to validate the content of the Movie discover end point response with the expected response data
+	//Test Case 8: Test to validate the content of the Movie discover end point response with the expected response data
 	@Test
 	public void validateDiscoverMovieData()
 	{
@@ -165,7 +163,7 @@ public class DiscoverMovie extends APIBaseTest{
 	}
 	
 	
-	//Test Case 7: Test to validate the sorting functionality of the Discover/Movie end point "GET" response
+	//Test Case 9: Test to validate the sorting functionality of the Discover/Movie end point "GET" response
 	@Test(dataProvider="Sorting")
 	public void validateSortedDiscoverMovieData(String sortingParameter)
 	{

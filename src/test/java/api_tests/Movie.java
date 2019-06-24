@@ -22,8 +22,10 @@ public class Movie extends APIBaseTest {
 	private static Logger logger=LogManager.getLogger(Movie.class.getName());
 	/*Test to validate the "POST" method functionality for "Movie/Rate Movie" end point to rate a movie*/
 	
-	//Test Case 8: Positive Test Case: Validate POST call for Rate Movie end point with valid rating value
-	//Test Case 9: Negative Test Case: Validate POST call for Rate Movie end point with invalid rating value (such as 9.1, >10.0 or <0.5 and also for boundary values)
+	//1.	Positive Test: Validate the response code returned by POST call for Rate Movie end point with valid rating value (201)
+	//2.	Positive Test: Validate the response data after successful POST call for Rate Movie end point (201)
+	//3.	Negative Test: Validate the error status code returned by Rate Movie end point by passing invalid rating value in request body (400 Bad Request)
+
 	@Test (dataProvider="Rate_Movie")
 	public void rateAMovie(int movieId,double rating,int expectedStatusCode)
 	{
@@ -49,15 +51,16 @@ public class Movie extends APIBaseTest {
 				{
 					//Get the posted rating for the movies and validate the post functionality
 					List<HashMap<String,String>> response2=
+					//String response2=
 								given()
 								.spec(reqSpec)
 								.pathParam("guest_session_id", ConfigSettings.GuestSessionId)
 								.get("/guest_session/{guest_session_id}/rated/movies")
 								.then()
 								.extract().path("results.findAll{it.id=="+movieId+"}");
-						if(response2.size()==0)
+					if(response2.size()==0)
 							throw (new Exception("Movie was not found in the response"));
-						if(!(String.valueOf(response2.get(0).get("rating")).equals(String.valueOf(rating))))
+					if(!(String.valueOf(response2.get(0).get("rating")).equals(String.valueOf(rating))))
 								throw (new Exception("Rating is mismatched for movie id:"+String.valueOf(movieId)));
 				}
 			}
@@ -75,9 +78,9 @@ public class Movie extends APIBaseTest {
 	 * @return: void
 	 * */
 	
-	//Test Case 10: Positive Test Case: Validate the DELETE call for movie rating end point
-	//Test Case 11: Negative Test Case: Validate the DELETE call for movie rating end point for the movie that doesn't exist in the database
-	//Test Case 12: Negative Test Case: Validate the DELETE call for Movie end point without passing movie Id value
+	//4.	Positive Test: Validate the response code returned by Delete Rating end point by passing valid movie id, valid guest session id (200)
+	//5.	Negative Test: Validate the response code returned by Delete Rating end point by passing invalid movie id and valid guest session id (404)
+
 	@Test (dataProvider="Delete_Movie")
 	public void deleteRating(int movieId,int expectedStatusCode)
 	{
@@ -103,7 +106,7 @@ public class Movie extends APIBaseTest {
 		
 	}
 	
-	//Test Case 13: Negative Test Case: Validate DELETE call status message for movie rating end point without guest session id
+	//6.	Negative Test: Validate the status message returned by Delete Rating end point by passing valid movie id and invalid guest session id/without guest session id (401)
 	@Test (dataProvider="Delete_Movie")
 	public void deleteRatingWithOutGuestSession(int movieId,int expectedStatusCode)
 	{
@@ -129,15 +132,6 @@ public class Movie extends APIBaseTest {
 		}
 		
 	}
-	
-	//Test Case 14: Validate the response time against the specifications
-	@Test
-	public void validateResponseTime()
-	{
-		//ToDo
-		//Validate response time of end point against specifications
-	}
-	
 	
 	@DataProvider(name = "Rate_Movie")
 	  public Object[][] rateMovie() throws Exception {

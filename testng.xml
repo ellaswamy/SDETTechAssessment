@@ -3,6 +3,6 @@
 <suite name="allSuites">
 	 <suite-files>
 		<suite-file path="./testng_api.xml" />
-		<suite-file path="./testng_ui.xml"/>
+		<!--<suite-file path="./testng_ui.xml"/>-->
 	</suite-files>
 </suite>
