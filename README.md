@@ -2,7 +2,7 @@
 
 Getting Started
 ------------------------
-SDETTechAssessment project has both API and UI tests. Clone the project and run it on your local
+SDETTechAssessment project has both API and UI tests. Clone the project and import the project as maven project into your IDE.
 
 Pre-Requisites
 ------------------
