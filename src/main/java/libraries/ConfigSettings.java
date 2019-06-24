@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.logging.log4j.*;
-import org.junit.Assert;
+import org.testng.Assert;
 
 
 /***
