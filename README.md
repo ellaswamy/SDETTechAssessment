@@ -26,6 +26,13 @@ Pre-Requisites
   
 5. Verify if maven is present on your machine. Run below command to verify.
   mvn --version
+  
+  Running Tests
+------------------------
+Before running tests using maven, Right click on the project --> Go to Maven --> Click on Update Project. This updates all maven dependencies from maven repository
+1. Go to the cloned location of the project in command prompt
+2. run "mvn compile" command to compile the project
+3. run "mvn test" command to run the tests
 
 EnvironmentConfig.properties
 -------------------------------
@@ -42,10 +49,3 @@ TMDBTestData.xlsx
 This file is present under SDETTechAssessment/resources folder
 This is used to input the test data from.
 If new test data need to be added for the existing tests, add the data to existing sheets respectively
-
-Running Tests
-------------------------
-Before running tests using maven, Right click on the project --> Go to Maven --> Click on Update Project. This updates all maven dependencies from maven repository
-1. Go to the cloned location of the project in command prompt
-2. run "mvn compile" command to compile the project
-3. run "mvn test" command to run the tests
